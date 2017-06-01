@@ -4,6 +4,28 @@ module.exports = {
   output: {
     path: path.join(__dirname, './dist'),
     publicPath: '/static/',
-    firename: 'build.js'
+    filename: 'build.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            scss: 'vue-style-loader!css-loader!sass-loader',
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+          }
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['vue-style-loader', 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['vue-style-loader', 'sass-loader']
+      }
+    ]
   }
 }
